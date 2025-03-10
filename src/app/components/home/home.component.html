@@ -1,0 +1,25 @@
+<div class="home-container">
+  <div class="hero">
+    <h1>🚀 Welcome to FinalPro</h1>
+    <p>Your one-stop destination for high-quality products. Explore our collection now!</p>
+    <button (click)="showMessage()" class="cta-button">Get Started</button>
+    <p *ngIf="message" class="message">{{ message }}</p>
+  </div>
+
+  <div class="features">
+    <div class="feature-card">
+      <h3>Fast Delivery</h3>
+      <p>Get your orders delivered quickly with our express shipping.</p>
+    </div>
+
+    <div class="feature-card">
+      <h3>Secure Payment</h3>
+      <p>Your transactions are 100% safe and secure with us.</p>
+    </div>
+
+    <div class="feature-card">
+      <h3>24/7 Support</h3>
+      <p>We are here to help you anytime, anywhere.</p>
+    </div>
+  </div>
+</div>
