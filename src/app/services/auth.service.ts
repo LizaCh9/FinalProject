@@ -1,42 +1,43 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, delay, Observable, of, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, map,} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private apiUrl = 'http://localhost:3000/users';
 
-  private loggedIn = new BehaviorSubject<boolean>(!!localStorage.getItem('token'));
-  isLoggedIn$ = this.loggedIn.asObservable(); // ✅ Public observable
+  private loggedIn = new BehaviorSubject<boolean>(!!localStorage.getItem('user'));
+  isLoggedIn$ = this.loggedIn.asObservable();
 
   constructor(private http: HttpClient) {}
 
   login(credentials: { email: string; password: string }): Observable<any> {
-    const { email, password } = credentials;
+    return this.http.get<any[]>(this.apiUrl).pipe(
+      map(users => {
+        const user = users.find(u => u.email === credentials.email && u.password === credentials.password);
+        if (user) {
+          localStorage.setItem('user', JSON.stringify(user));
+          this.loggedIn.next(true);
+          return user;
+        } else {
+          throw new Error('Invalid email or password');
+        }
+      })
+    );
+  }
 
-    if (email === 'liza@gmail.com' && password === '123456') {
-      localStorage.setItem('token', 'mock-token');
-      localStorage.setItem('userEmail', email);
-      this.loggedIn.next(true); // ✅ Notify login
-      return of({ token: 'mock-token' }).pipe(delay(500));
-    } else {
-      return throwError(() => new Error('Invalid credentials'));
-    }
+  register(email: string, password: string): Observable<any> {
+    return this.http.post('http://localhost:3000/users', { email, password });
   }
 
   logout(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userEmail');
-    this.loggedIn.next(false); // ✅ Notify logout
-  }
-
-  isAdminUser(): boolean {
-    const email = localStorage.getItem('userEmail');
-    return email === 'liza@gmail.com';
+    localStorage.removeItem('user');
+    this.loggedIn.next(false);
   }
 
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('token');
+    return !!localStorage.getItem('user');
   }
 }

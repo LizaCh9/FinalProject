@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
-import { Mydata } from '../../interfaces/mydata';
+import { Mydata } from '../../shared/interfaces/mydata';
 import { NgFor } from '@angular/common';
 import {NgIf} from '@angular/common';
-import { ToastComponent } from '../shared/toast.component';
-import {PricePipe} from '../../pipes/price.pipe';
+import { ToastComponent } from '../../shared/components/toast.component';
+import {PricePipe} from '../../shared/pipes/price.pipe';
 
 
 @Component({

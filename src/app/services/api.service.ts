@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {catchError, Observable, throwError} from 'rxjs';
-import {Mydata} from '../interfaces/mydata';
-import { map } from 'rxjs/operators'; // Add this import at the top
+import {Mydata} from '../shared/interfaces/mydata';
+import { map } from 'rxjs/operators';
 import { delay } from 'rxjs/operators';
-
 
 @Injectable({
   providedIn: 'root'

@@ -30,10 +30,11 @@ export const routes: Routes = [
   {
     path: 'register',
     loadComponent: () =>
-      import('./register/register.component').then(m => m.RegisterComponent)
+      import('./components/register/register.component').then(m => m.RegisterComponent)
   },
   {
     path: 'cart',
+    canActivate: [AuthGuard],
     loadComponent: () =>
       import('./components/cart/cart.component').then(m => m.CartComponent)
   }

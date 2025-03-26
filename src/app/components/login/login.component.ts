@@ -1,8 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import {FormBuilder, FormGroup, Validators, ReactiveFormsModule} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { CommonModule } from '@angular/common';
-import { NgIf } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   standalone: true,
-  imports: [NgIf, ReactiveFormsModule, CommonModule, ReactiveFormsModule],
+  imports: [NgIf, ReactiveFormsModule, CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent {
@@ -26,23 +25,19 @@ export class LoginComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
-
   }
-   public get f() {
-    return this.loginForm.controls;
-  }
-
-  onSubmit() {
+  onSubmit(): void {
     if (this.loginForm.valid) {
-      const { email, password } = this.loginForm.value;
-      this.authService.login({ email, password }).subscribe({
-        next: (response) => {
-          localStorage.setItem('token', response.token);
-          localStorage.setItem('userEmail', email);
-          this.router.navigate(['/products']);
+      const {email, password} = this.loginForm.value;
+
+      this.authService.login({email, password}).subscribe({
+        next: () => {
+          this.router.navigate(['/products']).then(() => {
+            console.log('✅ Redirected to /products after login');
+          });
         },
         error: () => {
-          this.error = 'Invalid username or password';
+          this.error = 'Invalid email or password';
           this.loginForm.reset();
         }
       });

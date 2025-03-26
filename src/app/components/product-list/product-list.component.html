@@ -15,8 +15,9 @@
       <p>{{ product.description }}</p>
       <p class="price">{{ product.price | price }}</p>
       <p class="rating" *ngIf="product.rating">
-        ⭐ {{ product.rating?.rate }} ({{ product.rating?.count }} reviews)
+        ⭐ {{ product.rating.rate }} ({{ product.rating.count }} reviews)
       </p>
+      <button (click)="addToCart(product)">Add to Cart</button>
       <a [routerLink]="['/product', product.id]" class="view-details">View Details</a>
     </div>
   </div>

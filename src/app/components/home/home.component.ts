@@ -12,13 +12,16 @@ import {Router, RouterLink} from '@angular/router';
 export class HomeComponent {
   message: string = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+  }
 
   showMessage() {
     this.message = '🚀 NovaStore welcomes you!';
-    setTimeout(() => {
-      this.router.navigate(['/products']);
-    }, 1000); // 2 seconds
+    setTimeout((): void => {
+      this.router.navigate(['/products']).then(() => {
+        console.log('Navigated to /products');
+      });
+    }, 1000);
   }
 }
 
