@@ -1,5 +1,3 @@
-import {Rating} from './rating';
-
 export interface Mydata {
   id: number;
   title: string;

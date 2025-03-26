@@ -10,9 +10,13 @@
   <label>Password:</label>
   <input formControlName="password" type="password" />
 
+  <label>Confirm Password:</label>
+  <input formControlName="confirmPassword" type="password" />
+  <div *ngIf="registerForm.hasError('mismatch') && registerForm.touched" class="error">
+    Passwords do not match
+  </div>
+
   <button type="submit" [disabled]="registerForm.invalid">Register</button>
 </form>
-
-<!-- Success or error messages -->
 <p *ngIf="message" class="success">{{ message }}</p>
 <p *ngIf="error" class="error">{{ error }}</p>
