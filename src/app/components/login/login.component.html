@@ -1,42 +1,13 @@
 <div class="login-container">
   <h2>Login</h2>
-
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <!-- Email -->
     <div class="input-group">
       <input formControlName="email" type="email" placeholder="Email" />
     </div>
-
-    <!-- Password -->
     <div class="input-group">
       <input formControlName="password" type="password" placeholder="Password" />
     </div>
-
     <button type="submit" [disabled]="loginForm.invalid">Login</button>
-
-    <!-- Show error here -->
     <p *ngIf="error" class="login-error">{{ error }}</p>
   </form>
 </div>
-
-<!--<p *ngIf="error" class="login-error">{{ error }}</p>-->
-<!--<div class="login-container">-->
-<!--  <h2>Login</h2>-->
-<!--  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">-->
-<!--    <div class="input-group">-->
-<!--      <input formControlName="email" type="email" placeholder="Email" />-->
-<!--      <span *ngIf="f['email'].invalid && (f['email'].dirty || f['email'].touched)">-->
-<!--  Email is required-->
-<!--</span>-->
-<!--    </div>-->
-
-<!--    <div class="input-group">-->
-<!--      <input formControlName="password" type="password" placeholder="Password" />-->
-<!--      <span *ngIf="f['password'].invalid && (f['password'].dirty || f['password'].touched)">-->
-<!--  Password is required-->
-<!--</span>-->
-<!--    </div>-->
-
-<!--    <button type="submit" [disabled]="loginForm.invalid">Login</button>-->
-<!--  </form>-->
-<!--</div>-->

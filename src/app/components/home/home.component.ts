@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NgIf } from '@angular/common';
 import {Router, RouterLink} from '@angular/router';
 
-
 @Component({
   standalone: true,
   selector: 'app-home',

@@ -4,7 +4,6 @@ import { AuthService } from '../../services/auth.service';
 import { RouterModule } from '@angular/router';
 import { NgIf } from '@angular/common';
 
-
 @Component({
   selector: 'app-header',
   standalone: true,

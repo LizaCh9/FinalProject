@@ -1,12 +1,22 @@
 <ng-container *ngIf="products$ | async as products; else loading">
-
+  <div class="search-wrapper">
+    <input
+      type="text"
+      [formControl]="searchControl"
+      placeholder="Search products..."
+      class="search-bar"
+    />
+    <span class="search-icon">🔍</span>
+  </div>
   <div class="product-container" *ngIf="products.length > 0; else noProducts">
     <div class="product-card" *ngFor="let product of products">
       <img [src]="product.thumbnail" alt="{{ product.title }}">
       <h2>{{ product.title }}</h2>
       <p>{{ product.description }}</p>
       <p class="price">{{ product.price | price }}</p>
-      <p class="rating">⭐ {{ product.rating?.rate }} ({{ product.rating?.count }} reviews)</p>
+      <p class="rating" *ngIf="product.rating">
+        ⭐ {{ product.rating?.rate }} ({{ product.rating?.count }} reviews)
+      </p>
       <a [routerLink]="['/product', product.id]" class="view-details">View Details</a>
     </div>
   </div>

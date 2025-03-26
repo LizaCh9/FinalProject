@@ -6,8 +6,8 @@ export interface Mydata {
   description: string;
   price: number;
   category: string;
-  thumbnail: string; // ✅ correct image field
-  images: string[];  // ✅ optional, can keep
+  thumbnail: string;
+  images: string[];
   rating: {
     rate: number;
     count: number;

@@ -13,11 +13,7 @@ export class ApiService {
   private readonly apiUrl = 'https://dummyjson.com/products/';
 
   constructor(private http: HttpClient) {}
-  //
-  // getData(): Observable<Mydata[]> {
-  //   return this.http.get<Mydata[]>(this.apiUrl).pipe(
-  //     catchError(this.handleError)
-  //   );}
+
   getData(): Observable<Mydata[]> {
     return this.http.get<any>(this.apiUrl).pipe(
       map((res) => res.products),

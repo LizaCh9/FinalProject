@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {Mydata} from '../../interfaces/mydata';
 import {ApiService} from '../../services/api.service';
@@ -14,7 +14,6 @@ import { CartService } from '../../services/cart.service';
     NgIf,
     CommonModule
   ],
-  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductDetailComponent implements OnInit {
 
