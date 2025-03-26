@@ -1,36 +1,51 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import {FormGroup, FormControl, Validators, ReactiveFormsModule} from '@angular/forms';
-import {NgIf} from '@angular/common';
+import {FormBuilder, FormGroup, FormControl, Validators, ReactiveFormsModule} from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { CommonModule } from '@angular/common';
+import { NgIf } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    NgIf
-  ],
+  imports: [NgIf, ReactiveFormsModule, CommonModule, ReactiveFormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
+  loginForm: FormGroup;
+  error: string = '';
 
-  loginForm = new FormGroup({
-    username: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required)
-  });
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
 
-  constructor() { }
-
-  public get f() {
+  }
+   public get f() {
     return this.loginForm.controls;
   }
 
-
-  ngOnInit(): void {
-  }
-
   onSubmit() {
-    console.log(this.loginForm.value);
+    if (this.loginForm.valid) {
+      const { email, password } = this.loginForm.value;
+      this.authService.login({ email, password }).subscribe({
+        next: (response) => {
+          localStorage.setItem('token', response.token);
+          localStorage.setItem('userEmail', email);
+          this.router.navigate(['/products']);
+        },
+        error: () => {
+          this.error = 'Invalid username or password';
+          this.loginForm.reset();
+        }
+      });
+    }
   }
 }

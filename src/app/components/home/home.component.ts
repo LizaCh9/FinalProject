@@ -1,17 +1,25 @@
 import { Component } from '@angular/core';
+import { NgIf } from '@angular/common';
+import {Router, RouterLink} from '@angular/router';
+
 
 @Component({
-  selector: 'app-home',
   standalone: true,
-  imports: [],
+  selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrls: ['./home.component.scss'],
+  imports: [NgIf, RouterLink]
 })
 export class HomeComponent {
   message: string = '';
 
+  constructor(private router: Router) {}
+
   showMessage() {
-    this.message = 'Hello! You clicked the button.';
+    this.message = '🚀 NovaStore welcomes you!';
+    setTimeout(() => {
+      this.router.navigate(['/products']);
+    }, 1000); // 2 seconds
   }
 }
 

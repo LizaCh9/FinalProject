@@ -8,12 +8,13 @@ import {FooterComponent} from './components/footer/footer.component';
 import {HeaderComponent} from './components/header/header.component';
 
 @Component({
+  standalone: true,
   selector: 'app-root',
   imports: [ProductListComponent, ProductDetailComponent, RouterOutlet, FooterComponent, HomeComponent, LoginComponent, HeaderComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
-  standalone: true,
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'FinalPro';
+  title = 'NovaStore';
 }
+

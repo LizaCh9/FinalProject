@@ -1,0 +1,18 @@
+<h2 class="cart-title">🛒 Your Cart</h2>
+
+<div class="cart-container">
+  <div *ngIf="cartItems.length === 0">
+    <p>Your cart is empty.</p>
+  </div>
+
+  <button *ngIf="cartItems.length > 0" (click)="clearCart()" class="clear-btn">
+    🗑 Clear Cart
+  </button>
+  <app-toast [message]="toastMessage"></app-toast>
+  <div *ngFor="let item of cartItems" class="cart-item">
+    <h3>{{ item.title }}</h3>
+    <p>{{ item.description }}</p>
+    <p><strong>Price:</strong> {{ item.price | price }}</p>
+    <hr />
+  </div>
+</div>

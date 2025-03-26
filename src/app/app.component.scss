@@ -1,12 +1,19 @@
-// General Layout
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+router-outlet {
+  flex: 1;
+}
+
 .app-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   font-family: 'Poppins', sans-serif;
 }
-
-// Header Design
 header {
   background: linear-gradient(135deg, #007bff, #0056b3);
   color: white;
@@ -40,7 +47,6 @@ header {
   }
 }
 
-// Main Content
 main {
   flex-grow: 1;
   display: flex;
@@ -50,7 +56,6 @@ main {
   background: #f8f9fa;
 }
 
-// Footer Design
 footer {
   background: #333;
   color: white;

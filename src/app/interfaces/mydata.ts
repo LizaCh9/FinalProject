@@ -3,10 +3,13 @@ import {Rating} from './rating';
 export interface Mydata {
   id: number;
   title: string;
-  price: number;
   description: string;
+  price: number;
   category: string;
-  images: string[];
-  image: string;
-  rating: Rating
+  thumbnail: string; // ✅ correct image field
+  images: string[];  // ✅ optional, can keep
+  rating: {
+    rate: number;
+    count: number;
+  };
 }

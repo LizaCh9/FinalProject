@@ -1,12 +1,28 @@
 <header class="header">
-  <div class="logo">
-<h2>Final Pro</h2>
+  <div class="container">
+    <div class="brand">
+      <h1 class="brand-name">🌟 NovaStore</h1>
+      <p class="brand-tagline">Shine brighter. Shop smarter.</p>
+    </div>
+
+    <nav class="nav-links" [class.open]="menuOpen">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+      <a routerLink="/products" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Products</a>
+      <a routerLink="/cart" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Cart</a>
+      <a href="https://www.linkedin.com" target="_blank">Contact</a>
+
+      <ng-container *ngIf="!isLoggedIn">
+        <a routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Login</a>
+        <a routerLink="/register" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Register</a>
+      </ng-container>
+
+      <button class="logout-btn" *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+    </nav>
+
+    <div class="menu-icon" (click)="menuOpen = !menuOpen">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </div>
-  <nav>
-    <a routerLink="/" routerLinkActive="active">Home</a>
-    <a routerLink="/products" routerLinkActive="active">Products</a>
-    <a routerLink="/login" routerLinkActive="active">Login</a>
-    <a href="https://www.linkedin.com" target="_blank">Contact</a>
-    <button (click)="logout()">Logout</button>
-  </nav>
 </header>
